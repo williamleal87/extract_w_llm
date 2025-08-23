@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st 
 from html_css import CSS_RODAPE, HTML_RODAPE
 from utils import call_llm
+import os
 
 st.set_page_config(layout="wide")
 st.title('📋Extrator de texto')

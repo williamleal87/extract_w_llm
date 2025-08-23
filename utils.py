@@ -8,8 +8,13 @@ from langchain.chat_models import init_chat_model
 
 load_dotenv(dotenv_path='.setup/.env')
 
-model = os.getenv('MODEL')
-provider = os.getenv('PROVIDER')
+#model = os.getenv('MODEL')
+#provider = os.getenv('PROVIDER')
+
+# Importa as variáveis de ambiente
+openai_api_key = os.getenv("OPENAI_API_KEY")
+provider = os.getenv("PROVIDER")
+model = os.getenv("MODEL")
 
 llm = init_chat_model(model=model, model_provider=provider, temperature=0)
 
