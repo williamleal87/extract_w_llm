@@ -18,11 +18,11 @@ produto_lista = []
 if 'llm_results' not in st.session_state:
     st.session_state['llm_results'] = None
 
-txt_input, txt_output, lists = st.columns([0.5, 0.25, 0.25])
+txt_input, txt_output, list_just, list_prod = st.columns([0.4, 0.2, 0.2, 0.2])
 
 with txt_input:
-    st.header("Entrada de texto")
-    user_text = st.text_area(label='Insira aqui o comentário para ver a LLm em ação', height=300)
+    st.markdown('#### **Entrada de texto:**')
+    user_text = st.text_area(label='Insira aqui o comentário para ver a LLm em ação', height=150)
 
     btn_exe = st.button('Analisar Texto')
 
@@ -35,7 +35,7 @@ with txt_input:
             if result:
                 st.session_state['llm_results'] = result
                 sentimento = result.sentimento
-                justificativa_lista = [i for i in result.justificativa.split(',')]
+                justificativa_lista = [i for i in result.justificativa]
                 produto_lista = [i for i in result.produtos]
 
                 if sentimento == 'Positivo':
@@ -52,7 +52,7 @@ with txt_input:
             st.warning('Insira um texto')
 
 with txt_output:
-    st.header("Resultados")
+    st.markdown('#### **Sentimento:**')
     # Usa o estado da sessão para evitar erros
     if st.session_state.llm_results:
         sentimento_display = st.session_state.llm_results.sentimento
@@ -64,19 +64,22 @@ with txt_output:
         elif sentimento_display == 'Negativo':
             emoji_display = '🤬'
         
-        st.metric(label='Sentimento', value=sentimento_display + emoji_display)
+        st.markdown(f'# {sentimento_display}{emoji_display}')
 
-with lists:
+with list_just:
     # Usa o estado da sessão para exibir as listas
     if st.session_state.llm_results:
-        justificativa_lista_display = [i for i in st.session_state.llm_results.justificativa]
-        produto_lista_display = [i for i in st.session_state.llm_results.produtos]
-        
+        justificativa_lista_display = [i for i in st.session_state.llm_results.justificativa]        
         st.markdown('#### **Justificativas:**')
         for i in justificativa_lista_display:
             st.markdown(f'- {i}')
         
-        st.divider()
+
+with list_prod:
+    # Usa o estado da sessão para exibir as listas
+    if st.session_state.llm_results:
+        produto_lista_display = [i for i in st.session_state.llm_results.produtos]
+        
         st.markdown('#### **Produtos:**')
         for i in produto_lista_display:
             st.markdown(f'- {i}')

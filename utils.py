@@ -27,5 +27,5 @@ llm_coletor = llm.with_structured_output(Collect)
 
 def call_llm(input):
     result = llm_coletor.invoke(input)
-    df = pd.DataFrame(result.model_dump())
+    #df = pd.DataFrame(result.model_dump())
     return result
