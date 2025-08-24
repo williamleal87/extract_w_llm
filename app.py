@@ -69,7 +69,7 @@ with txt_output:
 with lists:
     # Usa o estado da sessão para exibir as listas
     if st.session_state.llm_results:
-        justificativa_lista_display = [i for i in st.session_state.llm_results.justificativa.split(',')]
+        justificativa_lista_display = [i for i in st.session_state.llm_results.justificativa]
         produto_lista_display = [i for i in st.session_state.llm_results.produtos]
         
         st.markdown('#### **Justificativas:**')
