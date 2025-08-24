@@ -52,9 +52,9 @@ with txt_input:
             st.warning('Insira um texto')
 
 with txt_output:
-    st.markdown('#### **Sentimento:**')
     # Usa o estado da sessão para evitar erros
     if st.session_state.llm_results:
+        st.markdown('#### **Sentimento:**')
         sentimento_display = st.session_state.llm_results.sentimento
         emoji_display = ''
         if sentimento_display == 'Positivo':
