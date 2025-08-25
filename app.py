@@ -5,7 +5,7 @@ from utils import call_llm
 import os
 
 st.set_page_config(layout="wide")
-st.title('📋Extrator de texto')
+st.title('📋Classificador de texto com GenIA')
 st.divider()
 
 # Declaração inicial das variáveis
@@ -64,7 +64,7 @@ with txt_output:
         elif sentimento_display == 'Negativo':
             emoji_display = '🤬'
         
-        st.markdown(f'# {sentimento_display}{emoji_display}')
+        st.markdown(f'### {sentimento_display}{emoji_display}')
 
 with list_just:
     # Usa o estado da sessão para exibir as listas
